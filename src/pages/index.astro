@@ -1,0 +1,81 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { title, description } from "../consts";
+import { Icon } from "fulldev-ui";
+
+import { getCollection } from "astro:content";
+
+const work = await getCollection("work");
+const projects = await getCollection("projects");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body
+    class="flex w-screen min-h-screen md:justify-center md:items-center overflow-y-auto"
+  >
+    <main
+      class="flex flex-col gap-3 mx-4 sm:mx-10 md:mx-16 lg:mx-24 xl:mx-32 my-8 md:my-12"
+    >
+      <div class="flex flex-col gap-1">
+        <h1 class="text-4xl font-bold">Jess Daniel</h1>
+        <p>Developer, Entrepeneur and Tech Enthusiast</p>
+      </div>
+      <p>
+        As a software developer with a background in Political Science, I bring
+        a unique perspective to the tech industry. My journey from political
+        analysis to coding has led me through experiences at a SAAS startup and
+        a government services consulting firm. This diverse background allows me
+        to approach software development with a deep understanding of user needs
+        and organisational dynamics, making me a versatile developer ready to
+        tackle complex challenges in the tech landscape.
+      </p>
+      <div class="flex flex-col gap-1">
+        <strong>Work Experience</strong>
+        {
+          work.sort((a, b) => a.data.order! - b.data.order!).map((job) => (
+            <a href={`/work/${job.slug}`}>
+              <div class="w-full py-1 pl-2 bg-gray-100/75 rounded-sm hover:bg-gray-100">
+                <p class="text-md font-bold">{job.data.title}</p>
+                <p class="text-sm">{job.data.description}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="flex flex-col gap-1">
+        <strong>Projects</strong>
+        {
+          projects.map((project) => (
+            <a href={`/projects/${project.slug}`}>
+              <div class="w-full py-1 pl-2 bg-gray-100/75 rounded-sm hover:bg-gray-100">
+                <p class="text-md font-bold">{project.data.title}</p>
+                <p class="text-sm">{project.data.description}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="flex flex-col gap-1">
+        <strong>Where to find me?</strong>
+        <span class="flex items-center gap-1">
+          <Icon name="brand-github" />
+          <a href="https://github.com/jess-daniel">Github</a>
+        </span>
+        <span class="flex items-center gap-1">
+          <Icon name="brand-linkedin" />
+          <a href="https://www.linkedin.com/in/jess-daniel">LinkedIn</a>
+        </span>
+      </div>
+      <p>
+        <strong>Interested in working together? </strong>Send me an <a
+          href="mailto:me@michaeljdaniel.com"
+          class="underline">e-mail</a
+        >!
+      </p>
+    </main>
+  </body>
+</html>

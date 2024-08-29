@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import "../styles/globals.css";
+import { Icon } from "fulldev-ui";
+
+type Props = CollectionEntry<"projects">["data"];
+
+const { title, description, heroImage, date } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title + "- Jess Daniel"} description={description} />
+  </head>
+
+  <body>
+    <main
+      class="flex flex-col gap-3 ml-10 md:ml-64 mr-10 md:mr-64 mt-16 md:mt-24"
+    >
+      <span class="flex gap-1 items-center mb-3">
+        <Icon name="arrow-left" />
+        <a href="/">Back to home</a>
+      </span>
+      <article>
+        <div>
+          {
+            heroImage && (
+              <img width={1020} height={510} src={heroImage} alt="" />
+            )
+          }
+        </div>
+        <div class="prose">
+          <div class="title my-3">
+            <h1>{title}</h1>
+            <h4>{description}</h4>
+            {date ?? date}
+            <hr class="my-3" />
+          </div>
+          <slot />
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
