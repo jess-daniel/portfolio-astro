@@ -3,8 +3,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
-RUN npm run build
+RUN bun install
+RUN bun run build
 
 ENV HOST=0.0.0.0
 ENV PORT=4321
