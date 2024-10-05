@@ -4,8 +4,14 @@ import sitemap from '@astrojs/sitemap';
 
 import tailwind from "@astrojs/tailwind";
 
+import node from '@astrojs/node';
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
-  integrations: [mdx(), sitemap(), tailwind()]
+  integrations: [mdx(), sitemap(), tailwind()],
+  output: 'server',
+
+  adapter: node({
+    mode: 'standalone'
+  })
 });
