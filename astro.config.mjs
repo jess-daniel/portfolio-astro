@@ -3,8 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 import tailwind from "@astrojs/tailwind";
-
-import node from '@astrojs/node';
+import vercelServerless from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +11,5 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), tailwind()],
   output: 'server',
 
-  adapter: node({
-    mode: 'standalone'
-  })
+  adapter: vercelServerless()
 });
