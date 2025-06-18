@@ -1,9 +1,0 @@
-services:
-  portfolio:
-    container_name: portfolio
-    image: portfolio:latest
-    restart: always
-    ports:
-      - "4321:4321"
-    healthcheck:
-      test: /usr/bin/wget http://127.0.0.1 || exit 1
