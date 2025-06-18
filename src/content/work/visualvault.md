@@ -2,7 +2,7 @@
 title: "VisualVault"
 description: "Configuration Developer"
 heroImage: "/vvlogo.svg"
-date: " February 2022 - Present"
+date: " February 2022 - November 2024"
 order: 1
 ---
 
