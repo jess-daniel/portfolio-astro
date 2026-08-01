@@ -1,12 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import { title, description } from "../consts";
-import { Icon } from "fulldev-ui";
-
-import { getCollection } from "astro:content";
-
-const work = await getCollection("work");
-const projects = await getCollection("projects");
+import { title, description, email, socials, companies } from "../consts";
+import "../styles/globals.css";
 ---
 
 <!doctype html>
@@ -14,68 +9,188 @@ const projects = await getCollection("projects");
   <head>
     <BaseHead title={title} description={description} />
   </head>
-  <body
-    class="flex w-screen min-h-screen md:justify-center md:items-center overflow-y-auto"
-  >
+  <body class="relative min-h-screen overflow-x-hidden">
+    <div class="page-bg pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+    <div class="page-noise pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+
     <main
-      class="flex flex-col gap-3 mx-4 sm:mx-10 md:mx-16 lg:mx-24 xl:mx-32 my-8 md:my-12"
+      class="mx-auto flex w-full max-w-2xl flex-col gap-16 px-6 py-16 sm:px-8 sm:py-24 md:py-32"
     >
-      <div class="flex flex-col gap-1">
-        <h1 class="text-4xl font-bold">Jess Daniel</h1>
-        <p>Developer, Entrepeneur and Tech Enthusiast</p>
-      </div>
-      <p>
-        As a software developer with a background in Political Science, I bring
-        a unique perspective to the tech industry. My journey from political
-        analysis to coding has led me through experiences at a SAAS startup and
-        a government services consulting firm. This diverse background allows me
-        to approach software development with a deep understanding of user needs
-        and organisational dynamics, making me a versatile developer ready to
-        tackle complex challenges in the tech landscape.
-      </p>
-      <div class="flex flex-col gap-1">
-        <strong>Work Experience</strong>
-        {
-          work.sort((a, b) => a.data.order! - b.data.order!).map((job) => (
-            <a href={`/work/${job.slug}`}>
-              <div class="w-full py-1 pl-2 bg-gray-100/75 rounded-sm hover:bg-gray-100">
-                <p class="text-md font-bold">{job.data.title}</p>
-                <p class="text-sm">{job.data.description}</p>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-      <div class="flex flex-col gap-1">
-        <strong>Projects</strong>
-        {
-          projects.map((project) => (
-            <a href={`/projects/${project.slug}`}>
-              <div class="w-full py-1 pl-2 bg-gray-100/75 rounded-sm hover:bg-gray-100">
-                <p class="text-md font-bold">{project.data.title}</p>
-                <p class="text-sm">{project.data.description}</p>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-      <div class="flex flex-col gap-1">
-        <strong>Where to find me?</strong>
-        <span class="flex items-center gap-1">
-          <Icon name="brand-github" />
-          <a href="https://github.com/jess-daniel">Github</a>
-        </span>
-        <span class="flex items-center gap-1">
-          <Icon name="brand-linkedin" />
-          <a href="https://www.linkedin.com/in/jess-daniel">LinkedIn</a>
-        </span>
-      </div>
-      <p>
-        <strong>Interested in working together? </strong>Send me an <a
-          href="mailto:me@michaeljdaniel.com"
-          class="underline">e-mail</a
-        >!
-      </p>
+      <header class="animate-in flex flex-col gap-4" style="--delay: 0ms">
+        <p
+          class="font-sans text-sm font-medium tracking-[0.18em] text-muted uppercase"
+        >
+          Jacksonville, FL
+        </p>
+        <h1
+          class="font-display text-5xl leading-[1.05] font-normal tracking-[-0.01em] text-ink sm:text-6xl md:text-7xl"
+        >
+          Jess Daniel
+        </h1>
+        <p class="max-w-md font-sans text-lg leading-relaxed text-muted sm:text-xl">
+          Software Architect & Founder of{" "}
+          <a
+            href="https://revyosoftware.com"
+            class="text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            Revyo Software
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://integrate.dev"
+            class="text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            Integrate.dev
+          </a>.
+        </p>
+      </header>
+
+      <section
+        id="about"
+        class="animate-in flex flex-col gap-4"
+        style="--delay: 80ms"
+        aria-labelledby="about-heading"
+      >
+        <h2
+          id="about-heading"
+          class="font-sans text-sm font-semibold tracking-[0.16em] text-accent uppercase"
+        >
+          About
+        </h2>
+        <div class="flex flex-col gap-4 text-base leading-relaxed text-ink/90 sm:text-lg">
+          <p>
+            Jess builds software companies and systems that remove friction —
+            from custom applications and AI automations at{" "}
+            <a
+              href="https://revyosoftware.com"
+              class="font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+            >
+              Revyo Software
+            </a>, to developer infrastructure that makes hundreds of APIs
+            agent-ready at{" "}
+            <a
+              href="https://integrate.dev"
+              class="font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+            >
+              Integrate.dev
+            </a>.
+          </p>
+          <p>
+            With a background that spans product engineering and organizational
+            problem-solving, he focuses on shipping tools people actually use:
+            internal platforms, integrations, and practical AI that fits into
+            real workflows.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="companies"
+        class="animate-in flex flex-col gap-6"
+        style="--delay: 160ms"
+        aria-labelledby="companies-heading"
+      >
+        <h2
+          id="companies-heading"
+          class="font-sans text-sm font-semibold tracking-[0.16em] text-accent uppercase"
+        >
+          Companies
+        </h2>
+        <ul class="flex flex-col divide-y divide-line border-y border-line">
+          {
+            companies.map((company) => (
+              <li class="py-6 first:pt-5 last:pb-5">
+                <a
+                  href={company.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex flex-col gap-2 outline-none"
+                >
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 class="font-display text-2xl font-normal tracking-[-0.01em] text-ink transition-colors group-hover:text-accent group-focus-visible:text-accent">
+                      {company.name}
+                    </h3>
+                    <span class="font-sans text-sm text-muted transition-colors group-hover:text-accent">
+                      {company.tagline}
+                    </span>
+                  </div>
+                  <p class="max-w-xl font-sans text-base leading-relaxed text-muted">
+                    {company.description}
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section
+        id="contact"
+        class="animate-in flex flex-col gap-5"
+        style="--delay: 240ms"
+        aria-labelledby="contact-heading"
+      >
+        <h2
+          id="contact-heading"
+          class="font-sans text-sm font-semibold tracking-[0.16em] text-accent uppercase"
+        >
+          Contact
+        </h2>
+        <p class="font-sans text-base leading-relaxed text-muted sm:text-lg">
+          Interested in working together? Reach out at{" "}
+          <a
+            href={`mailto:${email}`}
+            class="font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            {email}
+          </a>.
+        </p>
+        <nav aria-label="Social links" class="flex flex-wrap gap-x-6 gap-y-2">
+          {
+            socials.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-sans text-sm font-medium tracking-wide text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+              >
+                {social.label}
+              </a>
+            ))
+          }
+        </nav>
+      </section>
+
+      <footer
+        class="animate-in border-t border-line pt-6 font-sans text-sm text-muted"
+        style="--delay: 300ms"
+      >
+        <p>© {new Date().getFullYear()} Jess Daniel</p>
+      </footer>
     </main>
   </body>
 </html>
+
+<style>
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in {
+    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-in {
+      animation: none;
+    }
+  }
+</style>
